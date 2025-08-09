@@ -1,0 +1,373 @@
+﻿{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+{% load humanize %}
+
+<div class="content">
+    <!--section-->
+    <div class="section hero-section">
+        <div class="hero-section-wrap">
+            <div class="hero-section-wrap-item">
+                <div class="container">
+                    <div class="hero-section-container hero-section-container_single" id="sec1">
+                        <div class="hero-section-title_container">
+                            <div class="hero-section_categories">
+                                <a href="#">{{car.fuel_type}}</a>
+                                <a href="#">{{car.body_type}}</a>
+                            </div>
+                            <div class="hero-section-title">
+                                <h2>{{car.name}}</h2>
+                                <!-- <h4><i class="fa-solid fa-barcode"></i> <span>{{ car.horsepower }} HP | {{ car.transmission|title }} Transmission | {{ car.fuel_type|title }} Engine</span></h4> -->
+                                {% if car.is_available %}
+                                    <div class="geodir_status" ><i class="fa-solid fa-tag"></i>
+                                        <span>Available</span>
+                                    </div>
+                                {% else %}
+                                    <div class="geodir_status" style="background-color:firebrick"><i class="fa-solid fa-tag"></i>
+                                        <span>Unavailable</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="hero-section-opt">
+                                <div class="property-single-header-price" data-propertyprise="50500"><strong>Price:</strong> <span class="pshp_item"><span>$</span> {{car.price_per_day|intcomma}}/ per day </span></div>
+                 
+                                <div class="property-single-header-date"><span>Status:</span>
+                                    {% if car.is_available %}
+                                        Available
+                                    {% else %}
+                                        Unavailable
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="hero-review-score_wrap">
+                                
+                                <div class="hero-review-score">
+                                    <div class="review-score_item"><span>{{car.rating}}</span></div>
+                                    <div class="review-score_item_opt">
+                                        <span>Very Good</span>
+                                        <div class="listing-rating star-rating" data-starrating="{{car.rating}}"></div>
+                                    </div>
+                                </div>
+                                <div class="hero-review-score-footer">
+                                    <a href="https://wa.me/c/971521517202" class="custom-scroll-link"><i class="fa-brands fa-whatsapp" style="color:#0D9762"></i></i>&nbsp; Contact on Whatsapp</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hs-scroll-down-wrap">
+                            <div class="scroll-down-item">
+                                <div class="mousey">
+                                    <div class="scroller"></div>
+                                </div>
+                                <span>Scroll Down To Discover</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-wrap bg-hero bg-parallax-wrap-gradien fs-wrapper" data-scrollax-parent="true">
+                    <div class="bg" data-bg="{{car.image.url}}" data-scrollax="properties: { translateY: '30%' }"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--section-end-->
+    <!--content_wrap -->
+    <div class="content_wrap">
+        <!--container-->
+        <div class="container">
+            <!--breadcrumbs-list-->
+            <div class="breadcrumbs-list bl_flat">
+                <a href="#">Home</a><a href="#">Fleet</a><span>{{car.slug}}</span>
+                <div class="breadcrumbs-list_dec"><i class="fa-solid fa-link-horizontal"></i></div>
+            </div>
+            <!--breadcrumbs-list end-->
+            <!--main-content-->
+            <div class="main-content">
+                <div class="boxed-container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <!--boxed-container-->
+                            <div class="scroll-content-wrap">
+                               
+                                <div class="scrol-content-wrap init_fix_nav">
+                                    <div class="scrol-content-wrap-item">
+                                        <nav class="scroll-nav scroll-init">
+                                            <ul>
+                                                <li><a class="act-scrlink" href="#sec1">Top</a></li>
+                                                <li><a href="#sec2">Gallery</a></li>
+                                                <li><a href="#sec3">Details</a></li>
+                                                {% if car.video_link %}
+                                                    <li><a href="#sec4">Video</a></li>
+                                                {% endif %}
+                                                
+                                            </ul>
+                                        </nav>
+                                        <a href="https://wa.me/c/971521517202" class="like-btn"><i class="fa-brands fa-whatsapp" style="color:#0D9762"></i></i>Rent Car</a>
+                                    </div>
+                                </div>
+                                <!--boxed-content-->
+                                <div class="boxed-content" id="sec1">
+                                    <!--boxed-content-item-->
+                                    <div class="boxed-content-item">
+                                        <div class="hero-section-title_container hsc_flat">
+                                            <div class="hsc_flat_header">
+                                                <div class="hero-section_categories">
+                                                    <a href="#">{{car.fuel_type}}</a>
+                                                    <a href="#">{{car.body_type}}</a>
+                                                </div>
+                                                {% if car.is_available %}
+                                                    <div class="geodir_status" ><i class="fa-solid fa-tag"></i>
+                                                        <span>Available</span>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="geodir_status" style="background-color:firebrick"><i class="fa-solid fa-tag"></i>
+                                                        <span>Unavailable</span>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="hero-section-title">
+                                                <h2>{{car.name}}</h2>
+                                                <h4><i class="fa-solid fa-barcode"></i> <span>{{ car.horsepower }} HP | {{ car.transmission|title }} Transmission | {{ car.fuel_type|title }} Engine</span></h4>
+                                                <div class="property-single-header-price"><strong>Price:</strong> <span class="pshp_item"><span>$</span>{{car.price_per_day|intcomma}}/ per day</span></div>
+                                            </div>
+                                            <div class="hero-section-opt">
+                                                <div class="listing-rating-count-wrap tolt" data-microtip-position="right" data-tooltip="Exelent">
+                                                    <div class="listing-rating-count">{{car.rating}}</div>
+                                                    <div class="listing-rating star-rating" data-starrating="5"></div>
+                                                </div>
+                                                <div class="property-single-header-date"><span>Status:</span>{{car.is_available}}</div>
+                                                <div class="hs-pv_wrap">
+                                                    <div class="pv-item">
+                                                        <i class="fa-light fa-glasses"></i>
+                                                        <span> Viewed - <strong>335</strong></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--boxed-content-item end-->
+                                </div>
+                                <!--boxed-content end-->											
+                                <!-- listing media -->
+                                <div class="blog-media" id="sec2">
+                                    <div class="single-slider-wrap">
+                                        <div class="single-slider">
+                                            <div class="swiper-container">
+                                                <div class="swiper-wrapper lightgallery">
+                                                    {% for car_image in car.car_images %}
+                                                        <div class="swiper-slide hov_zoom"><img src="{{car_image.image.url}}" alt=""><a href="{{car_image.image.url}}" class="box-media-zoom   popup-image"><i class="fal fa-search"></i></a></div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fw-carousel-button-prev slider-button"><i class="fa-solid fa-caret-left"></i></div>
+                                        <div class="fw-carousel-button-next slider-button"><i class="fa-solid fa-caret-right"></i></div>
+                                        <div class="fwc-controls_wrap">
+                                            <div class="solid-pagination_btns ss-slider-pagination"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- listing media end -->											
+                                <!--ps-facts-wrapper-->
+                                <div class="ps-facts-wrapper">
+                                    <!--ps-facts-item-->
+                                    <div class="ps-facts-item">
+                                        <h4>Doors</h4>
+                                        <h5>{{car.doors}}</h5>
+                                        <i class="fa-regular fa-cards-blank"></i>
+                                    </div>
+                                    <!--ps-facts-item end-->
+                                    <!--ps-facts-item-->
+                                    <div class="ps-facts-item">
+                                        <h4>Passengers</h4>
+                                        <h5>{{car.seats}}</h5>
+                                        <i class="fa-solid fa-person-seat"></i>
+                                    </div>
+                                    <!--ps-facts-item end-->										
+                                    <!--ps-facts-item-->
+                                    <div class="ps-facts-item">
+                                        <h4>Transmission</h4>
+                                        <h5>{{car.transmission}}</h5>
+                                        <i class="fa-regular fa-flux-capacitor"></i>
+                                    </div>
+                                    <!--ps-facts-item end-->										
+                                    <!--ps-facts-item-->
+                                    <div class="ps-facts-item">
+                                        <h4>Fuel</h4>
+                                        <h5>{{car.fuel_type}}</h5>
+                                        <i class="fa-regular fa-engine"></i>
+                                    </div>
+                                    <!--ps-facts-item end-->										
+                                </div>
+                                <!--ps-facts-wrapper end-->												
+                                <!--boxed-content-->
+                                <div class="boxed-content" id="sec3">
+                                    <!--boxed-content-title-->
+                                    <div class="boxed-content-title">
+                                        <h3>About this Car</h3>
+                                    </div>
+                                    <!--boxed-content-title end-->
+                                    <!--boxed-content-item-->
+                                    <div class="boxed-content-item">
+                                        <p>{{car.detailed_description|safe}}</p>
+                                    </div>
+                                    <!--boxed-content-item end-->
+                                </div>
+                                <!--boxed-content end-->											
+                                
+                                <!--boxed-content-->
+                                <div class="boxed-content">
+                                    <!--boxed-content-title-->
+                                    <div class="boxed-content-title">
+                                        <h3>  Car Amenities</h3>
+                                    </div>
+                                    <!--boxed-content-title end-->
+                                    <!--boxed-content-item-->
+                                    <div class="boxed-content-item">
+                                        <div class="pp-single-opt">
+                                            <div class="pp-single-features ">
+                                                <ul>
+                                                    {% for amenity in car.amenities.all %}
+                                                        <li><a href="#"><i class="fa-regular fa-{{amenity.icon}}"></i>{{amenity.name}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--boxed-content-item end-->
+                                </div>
+                                <!--boxed-content end-->									
+                                <!--banner-widget-wrap-->	
+                                {% if car.video_link %}
+                                    <div class="banner-widget-wrap" id="sec4">
+                                        <div class="bg-wrap bg-parallax-wrap-gradien fs-wrapper">
+                                            <div class="bg" data-bg="{{car.image.url}}"></div>
+                                        </div>
+                                        <div class="banner-widget_content">
+                                            <div class="video-box-btn" id="html5-videos" data-html="#video1"><i class="fas fa-play"></i></div>
+                                            <h5><span>Property  Video Presentation</span></h5>
+                                        </div>
+                                        <div style="display:none;" id="video1" class="popup_video" data-videolink="{{car.video_link}}">
+                                            <video class="lg-video-object lg-html5" controls="" preload="none">
+                                                <source src="{{car.video_link}}" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <!--banner-widget-wrap end-->								
+                                										
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <!--boxed-container-->
+                            <div class="sb-container">
+                               
+                                								
+                                <!--boxed-content-->
+                                <div class="fixed-form-wrap">
+                                    <div class="fixed-form">
+                                        <div class="boxed-content">
+                                            <!--boxed-content-title-->
+                                            <div class="boxed-content-title">
+                                                <h3>Booking this Car</h3>
+                                            </div>
+                                            <!--boxed-content-title end-->
+                                            <!--boxed-content-item-->
+                                            <div class="boxed-content-item">
+                                                <button onclick="window.location.href='https://wa.me/c/971521517202'" class="commentssubmit commentssubmit_fw"><i class="fa-brands fa-whatsapp" style="color:#0D9762"></i></i>&nbsp; Contact on Whatsapp</button>
+                                            </div>
+                                            <!--boxed-content-item end-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--boxed-content end-->									
+                            </div>
+                        </div>
+                    </div>
+                    <div class="limit-box"></div>
+                </div>
+                <div class="boxed-container">
+                    <div class="boxed-content-title bcst_ca">
+                        <h3>Similar Cars</h3>
+                    </div>
+                    <div class="single-carousel-wrap">
+                        <div class="single-carousel">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    {% for car in similar_cars %}
+                                        <!-- swiper-slide -->
+                                        <div class="swiper-slide">
+                                            <!-- listing-item -->
+                                            <div class="listing-item">
+                                                <div class="geodir-category-listing">
+                                                    <div class="geodir-category-img">
+                                                        <a href="{{car.get_absolute_url}}" class="geodir-category-img_item">
+                                                            <div class="bg" data-bg="{{car.image.url}}"></div>
+                                                            <div class="overlay"></div>
+                                                        </a>
+                                                        <ul class="list-single-opt_header_cat">
+                                                            <li><a href="#" class="cat-opt">{{car.fuel_type}}</a></li>
+                                                            <li><a href="#" class="cat-opt">{{car.body_type}}</a></li>
+                                                        </ul>
+                                                        <a href="https://wa.me/c/971521517202" class="geodir_save-btn tolt" data-microtip-position="left" data-tooltip="Contact on whatsapp"><span><i class="fa-brands fa-whatsapp" style="color:#0D9762"></i></i></span></a>
+                                                        <div class="geodir-category-listing_media-list">
+                                                            <span><i class="fas fa-camera"></i> {{car.number_of_images}}</span>
+                                                        </div>
+                                                        {% if car.is_available %}
+                                                            <div class="geodir_status" ><i class="fa-solid fa-tag"></i>
+                                                                <span>Available</span>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="geodir_status" style="background-color:firebrick"><i class="fa-solid fa-tag"></i>
+                                                                <span>Unavailable</span>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="geodir-category-content">
+                                                        <h3><a href="{{car.get_absolute_url}}">{{car.name}}</a></h3>
+                                                        <div class="geodir-category-content_price">$ {{car.price_per_day|intcomma}}/ per day</div>
+                                                        <p> {{car.list_description}}</p>
+                                                        <div class="geodir-category-content-details">
+                                                            <ul>
+                                                                <li><i class="fa-solid fa-person-seat"></i><span>{{car.seats}}</span></li>
+                                                                <li><i class="fa-light fa-flux-capacitor"></i><span>{{car.transmission}}</span></li>
+                                                                <li><i class="fa-light fa-engine"></i><span>{{car.horsepower}}</span></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="geodir-category-footer">
+                                                        <a href="{{car.get_absolute_url}}" class="gid_link"><span>View Details</span> <i class="fa-solid fa-caret-right"></i></a>
+                                                        <div class="listing-rating-count-wrap tolt" data-microtip-position="right" data-tooltip="Good">
+                                                            <div class="listing-rating-count">{{car.rating}}</div>
+                                                            <div class="listing-rating star-rating" data-starrating="{{car.rating}}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- listing-item end-->																	
+                                        </div>
+                                        <!--swiper-slide end -->
+                                    {% endfor %}														
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ss-carousel-pagination_wrap">
+                        <div class="solid-pagination_btns ss-carousel-pagination_init"></div>
+                    </div>
+                    <div class="ss-carousel-button-wrap">
+                        <div class="ss-carousel-button ss-carousel-button-prev"><i class="fas fa-caret-left"></i></div>
+                        <div class="ss-carousel-button ss-carousel-button-next"><i class="fas fa-caret-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <!--main-content end-->
+        </div>
+        <!-- container end-->
+        <div class="content-dec_ver"></div>
+        <div class="content-dec_hor"></div>
+    </div>
+    <!--content_wrap end-->
+</div>
+
+{% endblock content %}

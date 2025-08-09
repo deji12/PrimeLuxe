@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+{% block content %}
+{% load humanize %}
+
+<div class="content">
+    <!--section-->
+    <div class="section hero-section home-hero-section">
+        <div class="hero-section-wrap">
+            <div class="hero-section-wrap-item">
+                <div class="container">
+                    <div class="hero-section-container">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="hero-section-title hs_align-title">
+                                    <div class="hero-section-title_sub">Welcome to Prime Luxe</div>
+                                    <h2>Find The Car of Your Dream   Using <br>  Our Carrental   Platform</h2>
+                                    <h5>Explore top-tier vehicles at unbeatable rates. Book quickly, drive confidently, and experience luxury like never before.</h5>
+                                    <a href="#sec1" class="commentssubmit csb_color  custom-scroll-link" style="margin-top: 40px">Start Explore <i class="fa-solid fa-caret-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mob-hid">
+                                <!-- list-searh-input-wrap-->
+                                 <form method="POST" action='/fleet/'>
+                                    {% csrf_token %}
+                                    <div class="list-searh-input-wrap box_list-searh-input-wrap lws_column lsiw_dec ">
+                                        <div class="list-searh-input-wrap-title_wrap">
+                                            <div class="list-searh-input-wrap-title"><i class="far fa-sliders-h"></i><span>Use Quick Search</span></div>
+                                            <div class="list-searh-input-radio_wrap">
+                                                <div class="header-search-radio">
+                                                    <input class="hidden radio-label" type="radio" value="gasoline" {% if fuel_type == 'gasoline' %} checked {% endif %} name="fuel" id="sale-button2">
+                                                    <label class="button-label" for="sale-button2">Gasoline</label>
+                                                    <input class="hidden radio-label" type="radio" value="electrical" {% if fuel_type == 'electrical' %} checked {% endif %} name="fuel" id="rent-button2">
+                                                    <label class="button-label" for="rent-button2">Electrical</label>							
+                                                    <input class="hidden radio-label" type="radio" value="hybrid" {% if fuel_type == 'hybrid' %} checked {% endif %} name="fuel" id="comm-button2">
+                                                    <label class="button-label" for="comm-button2">Hybrid</label>								
+                                                </div>
+                                                <div class="reset-form reset-btn tolt" data-microtip-position="bottom"  data-tooltip="Reset Filters" onclick="window.location.href='/' "><i class="fa-solid fa-arrows-rotate"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-form">
+                                            <div class="row">
+                                            
+                                                <!-- listsearch-input-item -->
+                                                <div class="col-lg-12">
+                                                    <div class="cs-intputwrap">
+                                                        <i class="fa-light fa-car-bus"></i>
+                                                        <select data-placeholder="Categories" name="car_type" class="chosen-select on-radius no-search-select" >
+                                                            {% for type in car_types %}
+                                                                <option value="{{type}}" {% if car_type == type %} selected {% endif %}>{{type}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- listsearch-input-item -->		
+                                                
+                                                <div class="col-lg-12">
+                                                    <!-- quantity_wrap -->								
+                                                    <div class="quantity_wrap">
+                                                        <div class="quantity_wrap_title"><i class="fa-light fa-seat-airline"></i><span>Seats</span></div>
+                                                        <div class="quantity">
+                                                            <div class="quantity-item">
+                                                                <input type="button" value="-" class="minus">
+                                                                <input type="text"    name="seats"  title="Seats" class="qty" data-min="2" data-max="6" data-step="2" value="{{seats|default:4}}">
+                                                                <input type="button" value="+" class="plus">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- quantity_wrap end-->
+                                                    <div class="quantity_wrap">
+                                                        <div class="quantity_wrap_title"><i class="fa-regular fa-cards-blank"></i><span>Doors</span></div>
+                                                        <div class="quantity">
+                                                            <div class="quantity-item">
+                                                                <input type="button" value="-" class="minus">
+                                                                <input type="text"    name="doors"   title="Qty" class="qty" data-min="2" data-max="4" data-step="2" value="{{doors|default:4}}">
+                                                                <input type="button" value="+" class="plus">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>					
+                                            </div>
+                                            <!-- listsearch-input-item -->									
+                                            <button onclick="window.location.href='listing.html'" class="commentssubmit commentssubmit_fw">Search</button>											
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- list-searh-input-wrap end-->							
+                                <div class="hero-search-footer">
+                                    <div class="hero-notifer">Need more search options? <a href="{% url 'fleet' %}">Advanced Search</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hs-scroll-down-wrap">
+                        <div class="scroll-down-item">
+                            <div class="mousey">
+                                <div class="scroller"></div>
+                            </div>
+                            <span>Scroll Down To Discover</span>
+                        </div>
+                    </div>
+                    <div class="sc-controls shc_controls2 slideshow-container-pag-init  "></div>
+                </div>
+                <div class="bg-wrap bg-hero bg-parallax-wrap-gradien fs-wrapper">
+                    <!--ms-container-->
+                    <div class="slideshow-container_wrap fl-wrap full-height">
+                        <div class="swiper-container full-height">
+                            <div class="swiper-wrapper">
+                                {% for image in hero_section_images %}
+                                    <!--ms_item-->
+                                    <div class="swiper-slide">
+                                        <div class="ms-item_fs  full-height fl-wrap">
+                                            <div class="bg"  data-bg="{{image}}"  ></div>
+                                        </div>
+                                    </div>
+                                    <!--ms_item end-->  
+                                {% endfor %}                                           
+                            </div>
+                        </div>
+                    </div>
+                    <!--ms-container end-->
+                </div>
+            </div>
+            <div class="dec-corner dc_lb"></div>
+            <div class="dec-corner dc_rb"></div>
+            <div class="dec-corner dc_rt"></div>
+            <div class="dec-corner dc_lt"></div>
+        </div>
+    </div>
+    <!--section-end-->
+    <!--content_wrap -->
+    <div class="content_wrap">
+        <!--container-->
+        <div class="container">
+            <!--breadcrumbs-list-->
+            <div class="breadcrumbs-list bl_flat">
+                <a href="#">Home</a><a href="#">Listings</a><span>Fleet</span>
+                <div class="breadcrumbs-list_dec"><i class="fa-solid fa-link-horizontal"></i></div>
+            </div>
+            <!--breadcrumbs-list end-->
+            <!--main-content-->
+            <div class="main-content">
+                <!--boxed-container-->
+                <div class="boxed-container" id="sec1">
+                    <div class="listing-grid_heroheader">
+                        <h3>Browse Hot  Cars</h3>
+                        <div class="gallery-filters">
+                            <a href="#" class="gallery-filter gallery-filter-active"  data-filter="*"> All Properties</a>
+                            <a href="#" class="gallery-filter " data-filter=".cat-gasoline">Gasoline</a>
+                            <a href="#" class="gallery-filter" data-filter=".cat-electric">Electrical</a>
+                            <a href="#" class="gallery-filter" data-filter=".cat-hybrid">Hybrid</a>
+                        </div>
+                    </div>
+                    <!-- listing-grid-->
+                    <div class="listing-grid gisp">
+                        {% for car in cars %}
+                            <!-- listing-item -->
+                            <div class="listing-grid-item cat-{{car.fuel_type}}">
+                                <div class="geodir-category-listing">
+                                    <div class="geodir-category-img">
+                                        <a href="{{car.get_absolute_url}}" class="geodir-category-img_item">
+                                            <div class="bg" data-bg="{{car.image.url}}"></div>
+                                            <div class="overlay"></div>
+                                        </a>
+                                        <ul class="list-single-opt_header_cat">
+                                            <li><a href="#" class="cat-opt">{{car.fuel_type}}</a></li>
+                                            <li><a href="#" class="cat-opt">{{car.body_type}}</a></li>
+                                        </ul>
+                                        <a href="https://wa.me/c/971521517202" class="geodir_save-btn tolt" data-microtip-position="left" data-tooltip="Save"><span><i class="fa-brands fa-whatsapp" style="color:#0D9762"></i></span></a>
+                                        <div class="geodir-category-listing_media-list">
+                                            <span><i class="fas fa-camera"></i>{{car.number_of_images}}</span>
+                                        </div>
+                                        {% if car.is_available %}
+                                            <div class="geodir_status" ><i class="fa-solid fa-tag"></i>
+                                                <span>Available</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="geodir_status" style="background-color:firebrick"><i class="fa-solid fa-tag"></i>
+                                                <span>Unavailable</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="geodir-category-content">
+                                        <h3><a href="{{car.get_absolute_url}}">{{car.name}}</a></h3>
+                                        <div class="geodir-category-content_price">$ {{car.price_per_day|intcomma}}/ per day</div>
+                                        <p>{{car.list_description}}</p>
+                                        <div class="geodir-category-content-details">
+                                            <ul>
+                                                <li><i class="fa-solid fa-person-seat"></i><span>{{car.seats}}</span></li>
+                                                <li><i class="fa-light fa-flux-capacitor"></i><span>{{car.transmission}}</span></li>
+                                                <li><i class="fa-light fa-engine"></i><span>{{car.horsepower}}</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="geodir-category-footer">
+                                        <a href="{{car.get_absolute_url}}" class="gid_link"><span>View Details</span> <i class="fa-solid fa-caret-right"></i></a>
+                                        <div class="listing-rating-count-wrap tolt" data-microtip-position="right" data-tooltip="Good">
+                                            <div class="listing-rating-count">{{car.rating}}</div>
+                                            <div class="listing-rating star-rating"   data-starrating="{{car.rating}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- listing-item end-->	 
+                        {% endfor %}																
+                        
+                    </div>
+                    <!-- listing-grid end-->
+                    <a href="listing.html" class="commentssubmit csb-no-align">View Fleet <i class="fa-solid fa-caret-right"></i></a>
+                </div>
+                <!--boxed-container end-->
+            </div>
+            <!--main-content end-->	
+        </div>
+        <!--container end-->
+        <div class="content-dec_ver"></div>
+        <div class="content-dec_hor"></div>
+    </div>
+    <!--content_wrap end-->						
+   	<div class="section wide-section">
+        <div class="bg-wrap fs-wrapper bg-wrap_half">
+            <div class="bg-wrap-container">
+                <div class="bg bg-parallax" data-bg="images/bg/11.jpg" style="background-image: url(&quot;images/bg/11.jpg&quot;);"></div>
+                <div class="overlay"></div>
+            </div>
+            <div class="dec-corner dc_lb"></div>
+            <div class="dec-corner dc_rb"></div>
+            <div class="dec-corner dc_rt"></div>
+            <div class="dec-corner dc_lt"></div>
+        </div>
+        <div class="container">
+            
+            <!--boxed-container-->
+            <div class="boxed-container" style="margin-top: 20px">
+                <!-- contacts-cards-wrap  -->	
+                <div class="contacts-cards-wrap mbnone">
+                    <div class="row">
+                        <!-- contacts-card-item -->	
+                        <div class="col-lg-4">
+                            <div class="contacts-card-item">
+                                <i class="fal fa-headset"></i>
+                                <span>24/7 Concierge Support</span>
+                                <p>Reach us anytime via WhatsApp, email, or phone for instant assistance with reservations, car details, or personalized recommendations.</p>
+                                <a target="_blank" href="https://wa.me/c/971521517202">Send us a message</a>
+                            </div>
+                        </div>
+                        <!-- contacts-card-item end-->	
+                        <!-- contacts-card-item -->	
+                        <div class="col-lg-4">
+                            <div class="contacts-card-item">
+                                <i class="fal fa-users-cog"></i>
+                                <span>Simple Booking Process</span>
+                                <p>Found your dream car? Just hit the rent button and start a conversation with our agent on WhatsApp—fast, direct, and hassle-free.</p>
+                                <a href="#">How it works</a>
+                            </div>
+                        </div>
+                        <!-- contacts-card-item end-->
+                        <!-- contacts-card-item -->	
+                        <div class="col-lg-4">
+                            <div class="contacts-card-item">
+                                <i class="fal fa-phone-laptop"></i>
+                                <span>Browse Anywhere</span>
+                                <p>Whether you're on mobile or desktop, our site makes it easy to explore our luxury fleet from anywhere, anytime.</p>
+                                <a href="#">View Cars</a>
+                            </div>
+                        </div>
+                        <!-- contacts-card-item end-->
+                    </div>
+                </div>
+                <!-- contacts-cards-wrap end   -->	
+            </div>
+            <!--boxed-container end-->								
+        </div>
+        <div class="content-dec_ver"></div>
+        <div class="content-dec_hor"></div>
+    </div>
+    <div class="dark-bg half-carousel-container">
+        <div class="city-carousel-wrap">
+            <div class="hero-carousel-title">Explore our fleet</div>
+            <div class="city-carousel">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        {% for car in cars %}
+                            <!--city-carousel-item-->
+                            <div class="swiper-slide">
+                                <div class="city-carousel-item">
+                                    <div class="bg-wrap fs-wrapper">
+                                        <div class="bg"  data-bg="{{car.image.url}}"></div>
+                                        <div class="overlay"></div>
+                                    </div>
+                                    <div class="city-carousel-content">
+                                        <h3><a href="{{car.get_absolute_url}}">{{car.name}}</a></h3>
+                                        <p>{{car.list_description}}</p>
+                                        <div class="hc-counter" onclick="window.location.href='{{car.get_absolute_url}}' ">View Details</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--city-carousel-item end-->
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="sc-controls city-pag-init"></div>
+            </div>
+        </div>
+        <div class="csc-button csc-button-prev"><i class="fas fa-caret-left"></i></div>
+        <div class="csc-button csc-button-next"><i class="fas fa-caret-right"></i></div>
+        <div class="dec-corner dc_lb"></div>
+        <div class="dec-corner dc_rb"></div>
+        <div class="dec-corner dc_rt"></div>
+        <div class="dec-corner dc_lt"></div>
+    </div>
+    <!--content_wrap -->
+    <div class="content_wrap">
+        <!--container-->
+        <div class="container">
+            <!--main-content-->
+            <div class="main-content ms_vir_height">
+                <!--boxed-container-->
+                <div class="boxed-container">
+                    <div class="boxed-content ">
+                        <div class="about-wrap boxed-content-item" id="about">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="abt-wrap-single">
+                                        <div class="about-title ab-hero ab-hero2">
+                                            <h2>Some Info About Us</h2>
+                                            <h4>Check video presentation to find   out more about us .</h4>
+                                            <i class="fa-solid fa-address-card"></i>
+                                        </div>
+                                        <p>
+                                            Welcome to <strong>Prime Luxe</strong> — your premier destination for luxury car rentals in Dubai. Located in the heart of Business Bay at Empire Heights, we specialize in offering an exclusive fleet of high-end vehicles that blend performance, elegance, and comfort. Whether you're exploring the city or making a statement at your next event, Prime Luxe ensures every journey is driven in style. Our process is simple and direct—just browse our collection and connect instantly via WhatsApp to book. We pride ourselves on 24/7 concierge-level support, competitive pricing, and a seamless experience from inquiry to ignition. Reach out to us at <a href="https://wa.me/971521517202" target="_blank">+971 52 151 7202</a> or email <a href="mailto:admin@primejackofall.com">admin@primejackofall.com</a>. Follow our journey on Instagram and TikTok at <strong>@PrimeLuxe2025</strong> and drive Dubai the luxe way.
+                                            </p>
+
+                                        
+                                        <div class="abt-wrap-footer">
+                                            <a href="about.html" class="commentssubmit">Explore our fleet <i class="fa-solid fa-caret-right"></i></a>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <!-- blog media -->
+                                    <div class="blog-media" style="margin-bottom: 0">
+                                        <div class="single-slider-wrap">
+                                            <div class="single-slider">
+                                                <div class="swiper-container">
+                                                    <div class="swiper-wrapper lightgallery">
+                                                        {% for image in hero_section_images %}
+                                                            <div class="swiper-slide hov_zoom"><img src="{{image}}" alt=""><a href="{{image}}" class="box-media-zoom   popup-image"><i class="fal fa-search"></i></a></div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fw-carousel-button-prev slider-button"><i class="fa-solid fa-caret-left"></i></div>
+                                            <div class="fw-carousel-button-next slider-button"><i class="fa-solid fa-caret-right"></i></div>
+                                            <div class="fwc-controls_wrap">
+                                                <div class="solid-pagination_btns ss-slider-pagination"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- blog media end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--boxed-container end-->					
+            </div>
+            <!--main-content end-->
+        </div>
+        <!-- container end-->
+        <div class="content-dec_ver"></div>
+        <div class="content-dec_hor"></div>
+    </div>
+    <!--content_wrap end-->
+    					
+    <!--content_wrap -->
+    <div class="content_wrap">
+        <!-- section   -->
+        <div class="single-content-section">
+            <div class="container  ">
+                <div class="section-title">
+                    <h4>What said about us</h4>
+                    <h2>Testimonials and Clients</h2>
+                </div>
+            </div>
+            <div class="testimonilas-carousel-wrap" id="testimonials">
+                <div class="testimonilas-carousel">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {% for testimonial in testimonials %}
+                                <!--testi-item-->
+                                <div class="swiper-slide">
+                                    <div class="testi-item">
+                                        <div class="testimonilas-text">
+                                            <div class="testi-header">
+                                                <div class="testi-avatar"><img src="https://res.cloudinary.com/the-proton-guy/image/upload/v1660906962/6215195_0_pjwqfq.webp" alt="" style="border-radius:50%"></div>
+                                                <h3>{{testimonial.name}}</h3>
+                                            </div>
+                                            <div class="testimonilas-text-item">
+                                                <div class="testimonilas-text-item-wrap">
+                                                    <p>"{{testimonial.content}}"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--testi-item end-->
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="tc-button tc-button-next"><i class="fas fa-caret-right"></i></div>
+                    <div class="tc-button tc-button-prev"><i class="fas fa-caret-left"></i></div>
+                </div>
+                <div class="fwc-controls_wrap">
+                    <div class="solid-pagination_btns tcs-pagination_init"></div>
+                </div>
+            </div>
+        </div>
+        <!-- section end  -->						
+        <div class="content-dec_ver"></div>
+        <div class="content-dec_hor"></div>
+    </div>
+    <!--content_wrap end-->						
+</div>
+{% endblock content %}

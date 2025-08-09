@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load humanize %}
+    <div class="content">
+        <!--section-->
+        <div class="section hero-section hero-section_sin">
+            <div class="hero-section-wrap">
+                <div class="hero-section-wrap-item">
+                    <div class="container">
+                        <div class="hero-section-container">
+                            <div class="hero-section-title">
+                                <h2>Latest Cars</h2>
+                                <h5>Experience top-tier vehicles with power, efficiency, and modern technology.</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hs-scroll-down-wrap">
+                        <div class="scroll-down-item">
+                            <div class="mousey">
+                                <div class="scroller"></div>
+                            </div>
+                            <span>Scroll Down To Discover</span>
+                        </div>
+                    </div>
+                    <div class="bg-wrap bg-hero bg-parallax-wrap-gradien fs-wrapper" data-scrollax-parent="true">
+                        <div class="bg" data-bg="{% static 'images/bg/9.jpg' %}" data-scrollax="properties: { translateY: '30%' }"></div>
+                    </div>
+                </div>
+                <div class="dec-corner dc_lb"></div>
+                <div class="dec-corner dc_rb"></div>
+                <div class="dec-corner dc_rt"></div>
+                <div class="dec-corner dc_lt"></div>
+            </div>
+        </div>
+        <!--section-end-->
+        <!--content_wrap -->
+        <div class="content_wrap">
+            <!--container-->
+            <div class="container">
+                <!--breadcrumbs-list-->
+                <div class="breadcrumbs-list bl_flat">
+                    <a href="{% url 'home' %}">Home</a><a href="#">Fleet</a><span>List</span>
+                    <div class="breadcrumbs-list_dec"><i class="fa-solid fa-link-horizontal"></i></div>
+                </div>
+                <!--breadcrumbs-list end-->
+                <!--main-content-->
+                <div class="main-content">
+                    <!--boxed-container-->
+                    <div class="boxed-container">
+                        <div class="show-mob-filter" style="margin-bottom:20px"><i class="far fa-sliders-h"></i> Search Filters</div>
+                        <form method="POST">
+                            <div class="row">
+                                {% csrf_token %}
+                                <div class="col-lg-4">
+                                    <!-- list-searh-input-wrap-->
+                                    <div class="list-searh-input-wrap box_list-searh-input-wrap lws_column lws_mobile" id="filters-column">
+                                        <div class="close_mob-filter cmf"><i class="fa-regular fa-xmark"></i></div>
+                                        
+                                        
+                                        <div class="list-searh-input-wrap-title_wrap">
+                                            <div class="list-searh-input-wrap-title"><i class="far fa-sliders-h"></i><span>Search Filters</span></div>
+                                            <div class="list-searh-input-radio_wrap">
+                                                <div class="header-search-radio">
+                                                    <input class="hidden radio-label" type="radio" value="gasoline" {% if fuel_type == 'gasoline' %} checked {% endif %} name="fuel" id="sale-button2">
+                                                    <label class="button-label" for="sale-button2">Gasoline</label>
+                                                    <input class="hidden radio-label" type="radio" value="electrical" {% if fuel_type == 'electrical' %} checked {% endif %} name="fuel" id="rent-button2">
+                                                    <label class="button-label" for="rent-button2">Electrical</label>							
+                                                    <input class="hidden radio-label" type="radio" value="hybrid" {% if fuel_type == 'hybrid' %} checked {% endif %} name="fuel" id="comm-button2">
+                                                    <label class="button-label" for="comm-button2">Hybrid</label>								
+                                                </div>
+                                                <div class="reset-form reset-btn tolt" data-microtip-position="bottom"  data-tooltip="Reset Filters" onclick="window.location.href='/fleet' "><i class="fa-solid fa-arrows-rotate"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-form">
+                                            <div class="row">
+                                    
+                                                <!-- listsearch-input-item -->
+                                                <div class="col-lg-12">
+                                                    <div class="cs-intputwrap">
+                                                        <i class="fa-light fa-car-bus"></i>
+                                                        <select data-placeholder="Categories" name="car_type" class="chosen-select on-radius no-search-select" >
+                                                            {% for type in car_types %}
+                                                                <option value="{{type}}" {% if car_type == type %} selected {% endif %}>{{type}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <!-- listsearch-input-item -->
+                                                <div class="col-lg-12">
+                                                    <!-- quantity_wrap -->								
+                                                    <div class="quantity_wrap">
+                                                        <div class="quantity_wrap_title"><i class="fa-light fa-seat-airline"></i><span>Seats</span></div>
+                                                        <div class="quantity">
+                                                            <div class="quantity-item">
+                                                                <input type="button" value="-" class="minus">
+                                                                <input type="text"    name="seats"  title="Seats" class="qty" data-min="2" data-max="8" data-step="1" value="{{seats|default:4}}">
+                                                                <input type="button" value="+" class="plus">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- quantity_wrap end-->
+                                                    <div class="quantity_wrap">
+                                                        <div class="quantity_wrap_title"><i class="fa-regular fa-cards-blank"></i><span>Doors</span></div>
+                                                        <div class="quantity">
+                                                            <div class="quantity-item">
+                                                                <input type="button" value="-" class="minus">
+                                                                <input type="text"    name="doors"   title="Qty" class="qty" data-min="2" data-max="4" data-step="1" value="{{doors|default:4}}">
+                                                                <input type="button" value="+" class="plus">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <!-- hidden-listing-item -->
+                                                    <div class="hidden-listing-item">
+                                                        <div class="filter-tags-title">Amenities</div>
+                                                        <div class=" filter-tags">
+                                                            <ul class="no-list-style">
+                                                                {% for amenity in amenities %}
+                                                                    <li>
+                                                                        <input id="check-{{ forloop.counter }}" type="checkbox" value="{{ amenity.name }}" name="amenities" {% if amenity.name in selected_amenities %} checked {% endif %}>
+                                                                        <label for="check-{{ forloop.counter }}">{{ amenity.name }}</label>
+                                                                    </li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- hidden-listing-item end-->
+                                                </div>
+                                                <!-- listsearch-input-item -->									
+                                                <!-- listsearch-input-item -->
+                                                <div class="col-lg-12">
+                                                    <button type="submit" class="commentssubmit commentssubmit_fw" style="margin-top: 20px;">Search</button>									
+                                                </div>
+                                                <!-- listsearch-input-item --> 		
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- list-searh-input-wrap end-->								
+                                    <div class="back-tofilters-wrap btf_init">
+                                        <a class="back-tofilters    custom-scroll-link" href="#filters-column">Back to filters </a>						
+                                    </div>
+                                    <div class="mob-filter-overlay cmf fs-wrapper"></div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <!-- list-main-wrap-header-->
+                                    <div class="list-main-wrap-header box-list-header" style="margin-top: 0">
+                                        <!-- list-main-wrap-title-->
+                                        <div class="list-main-wrap-title">
+                                            <h2>Results : <strong>{{num_cars}}</strong></h2>
+                                        </div>
+                                        <!-- list-main-wrap-title end-->
+                                        <!-- list-main-wrap-opt-->
+                                        <div class="list-main-wrap-opt">
+                                            <!-- price-opt-->
+                                            <div class="price-opt">
+                                                <span class="price-opt-title">Sort   by:</span>
+                                                <div class="cs-intputwrap" style="margin-bottom: 0">
+                                                    <i class="fa-light fa-arrow-down-small-big"></i>
+                                                    <select data-placeholder="Popularity" name="sort_by" class="chosen-select no-search-select" >
+                                                        <option {% if sort_by == 'latest' %} selected {% endif %} value="latest">Latest</option>
+                                                        <option {% if sort_by == 'ascending_price' %} selected {% endif %} value="ascending_price">Price: low to high</option>
+                                                        <option {% if sort_by == 'decending_price' %} selected {% endif %} value="decending_price">Price: high to low</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- price-opt end-->
+                                        </div>
+                                        <!-- list-main-wrap-opt end-->                    
+                                    </div>
+                                    <!-- list-main-wrap-header end-->								
+                                    <!--listing-item-container-->
+                                    <div class="listing-item-container fw-listing-item">
+                                        {% for car in cars %}
+                                            <div class="listing-item">
+                                                <div class="geodir-category-listing">
+                                                    <div class="geodir-category-img">
+                                                        <a href="{{car.get_absolute_url}}" class="geodir-category-img_item">
+                                                            <div class="bg" data-bg="{{car.image.url}}"></div>
+                                                            <div class="overlay"></div>
+                                                        </a>
+                                                        <ul class="list-single-opt_header_cat">
+                                                            <li><a href="#" class="cat-opt">{{car.fuel_type}}</a></li>
+                                                            <li><a href="#" class="cat-opt">{{car.body_type}}</a></li>
+                                                        </ul>
+                                                        <a href="https://wa.me/c/971521517202" class="geodir_save-btn tolt" data-microtip-position="left" data-tooltip="Save"><span><i class="fa-brands fa-whatsapp" style="color:#0D9762"></i></i></span></a>   
+                                                        <div class="geodir-category-listing_media-list">
+                                                            <span><i class="fas fa-camera"></i> {{car.number_of_images}}</span>
+                                                        </div>
+                                                        {% if car.is_available %}
+                                                            <div class="geodir_status" ><i class="fa-solid fa-tag"></i>
+                                                                <span>Available</span>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="geodir_status" style="background-color:firebrick"><i class="fa-solid fa-tag"></i>
+                                                                <span>Unavailable</span>
+                                                            </div>
+                                                        {% endif %}     
+                                                    </div>
+                                                    <div class="geodir-category-content">
+                                                        <h3><a href="{{car.get_absolute_url}}">{{car.name}}</a></h3>
+                                                        <div class="geodir-category-content_price">$ {{car.price_per_day|intcomma}}/ per day</div>
+                                                        <p> {{car.list_description}} </p>
+                                                        <div class="geodir-category-content-details">
+                                                            <ul>
+                                                                <li><i class="fa-solid fa-person-seat"></i><span>{{car.seats}}</span></li>
+                                                                <li><i class="fa-light fa-flux-capacitor"></i><span>{{car.transmission}}</span></li>
+                                                                <li><i class="fa-light fa-engine"></i><span>{{car.horsepower}}</span></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="geodir-category-footer">
+                                                        <a href="{{car.get_absolute_url}}" class="gid_link"><span>View Details</span> <i class="fa-solid fa-caret-right"></i></a>
+                                                        <div class="listing-rating-count-wrap tolt" data-microtip-position="right" data-tooltip="Good">
+                                                            <div class="listing-rating-count">{{car.rating}}</div>
+                                                            <div class="listing-rating star-rating"   data-starrating="{{car.rating}}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}							
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                        <div class="limit-box"></div>
+                    </div>
+                    <!--boxed-container end-->
+                </div>
+                <!--main-content end-->
+            </div>
+            <!-- container end-->
+            <div class="content-dec_ver"></div>
+            <div class="content-dec_hor"></div>
+        </div>
+        <!--content_wrap end-->
+    </div>
+{% endblock content %}

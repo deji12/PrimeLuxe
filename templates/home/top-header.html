@@ -1,0 +1,38 @@
+<div class="header-top  fl-wrap">
+    <div class="header-top_news">
+        <div class="acme-news-ticker-label">Our last news</div>
+        <div class="acme-news-ticker">
+            <div class="acmeticker-wrap" style="position: relative;">
+                <ul class="my-news-ticker-2" style="position: absolute; width: 1331.44px; left: -44.35px;">
+                    {% for message in flash_messages %}
+                        <li style="display: inline-block; margin-right: 10px;"><a href="post-single.html"><span>{{message.highlighted_text}}</span>{{message.message}}</a></li>
+                    {%endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="acme-news-ticker-controls acme-news-ticker-horizontal-controls">
+            <span class="acme-news-ticker-pause"><i class="fa-solid fa-play-pause"></i></span>
+        </div>
+    </div>
+    <div class="header-social">
+        <div class="header-social_title">Follow us:</div>
+        <ul>
+            <li><a href="{{site_information.instagram_link|default:'#'}}" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="{{site_information.twitter_link|default:'#'}}" target="_blank"><i class="fa-brands fa-tiktok"></i></a></li>
+            <li><a href="{{site_information.facebook_link|default:'#'}}" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+            <li><a href="#" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+        </ul>
+    </div>
+    <!-- <div class="lang-wrap"><a href="#" class="act-lang">En</a><span>/</span><a href="#">Fr</a></div>
+    <div class="header-opt-modal-item currency-item">
+        <h4 class="header-opt_btn">Currency: <span>USD</span></h4>
+        <div class="header-opt-modal-list header-opt-modal novis_header-mod">
+            <ul>
+                <li><a href="#" class="current-lan" data-lantext="USD">USD</a></li>
+                <li><a href="#" data-lantext="EUR">EUR</a></li>
+                <li><a href="#" data-lantext="GBP">GBP</a></li>
+                <li><a href="#" data-lantext="RUR">RUR</a></li>
+            </ul>
+        </div>
+    </div> -->
+</div>
