@@ -79,7 +79,7 @@ class Car(models.Model):
     list_description = models.TextField(null=True, blank=True, help_text="A short summary of the car shown in list views.")
     detailed_description = CKEditor5Field('Text', config_name='extends', null=True, blank=True, help_text="A detailed and formatted description shown on the car detail page.")
     slug = models.SlugField(max_length=100, unique=True, null=True, blank=True, help_text="URL-friendly identifier for the car, auto-generated from the name.")
-    image = models.ImageField(upload_to='cars/', null=True, blank=True, help_text="Main image of the car used in listings.")
+    image = models.FileField(upload_to='cars/', null=True, blank=True, help_text="Main image of the car used in listings.")
     body_type = models.CharField(max_length=20, choices=CAR_TYPES, default='sedan', help_text="The body style of the car, such as SUV, Sedan, Coupe, etc.")
     seats = models.PositiveIntegerField(default=4, help_text="The number of passenger seats in the car.")
     doors = models.PositiveIntegerField(default=4, help_text="The number of doors available on the car.")
@@ -120,7 +120,7 @@ class Car(models.Model):
 
 class CarImage(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='images', help_text="The car this image is associated with.")
-    image = models.ImageField(upload_to='car_images/', help_text="An additional image for this car.")
+    image = models.FileField(upload_to='car_images/', help_text="An additional image for this car.")
 
     def __str__(self):
         return f"{self.car.name} - Image {self.id}"
