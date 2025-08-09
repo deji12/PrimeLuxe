@@ -280,7 +280,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('CLOUDINARY_API_SECRET')
 }
 
-MEDIA_URL = '/primeluxe/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CAR_TYPES = ['All types', 'sedan', 'suv', 'wagon', 'hatchback', 'convertible', 'pickup', 'coupe']
