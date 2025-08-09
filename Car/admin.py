@@ -7,8 +7,8 @@ class CarAmenityAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     search_fields = ('name',)
 
 class CarAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('name', 'brand', 'model', 'price_per_day', 'fuel_type', 'transmission')
-    search_fields = ('name', 'brand', 'model', 'location')
+    list_display = ('name', 'brand', 'price_per_day', 'fuel_type', 'transmission')
+    search_fields = ('name', 'brand', 'transmission')
     list_filter = ('brand', 'transmission', 'fuel_type', 'is_available', 'body_type', 'rating')
     filter_horizontal = ('amenities',)
 
