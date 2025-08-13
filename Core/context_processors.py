@@ -20,7 +20,4 @@ def site_information(request):
         'address': '',
     })
 
-    print('---------------------------')
-    print(request.get_host())
-
     return {'site_information': site_information, 'flash_messages': flash_messages, 'domain': request.get_host()}
