@@ -34,7 +34,7 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
 
-
+CSRF_TRUSTED_ORIGINS = ['https://primejackofall.com']
 # Application definition
 
 INSTALLED_APPS = [
