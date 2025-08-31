@@ -10,7 +10,7 @@ def home(request):
 
     context = {
         'cars': cars,
-        'hero_section_images': [car.image.url for car in cars],
+        'hero_section_images': [car.get_image() for car in cars],
         'testimonials': testimonials,
         'car_types': settings.CAR_TYPES
     }

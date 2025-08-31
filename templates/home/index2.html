@@ -158,7 +158,7 @@
                                 <div class="geodir-category-listing">
                                     <div class="geodir-category-img">
                                         <a href="{{car.get_absolute_url}}" class="geodir-category-img_item">
-                                            <div class="bg" data-bg="{{car.image.url}}"></div>
+                                            <div class="bg" data-bg="{{car.get_image}}"></div>
                                             <div class="overlay"></div>
                                         </a>
                                         <ul class="list-single-opt_header_cat">
@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="geodir-category-content">
                                         <h3><a href="{{car.get_absolute_url}}">{{car.name}}</a></h3>
-                                        <div class="geodir-category-content_price">$ {{car.price_per_day|intcomma}}/ per day</div>
+                                        <div class="geodir-category-content_price">AED {{car.price_per_day|intcomma}}/ per day</div>
                                         <p>{{car.list_description}}</p>
                                         <div class="geodir-category-content-details">
                                             <ul>
@@ -284,7 +284,7 @@
                             <div class="swiper-slide">
                                 <div class="city-carousel-item">
                                     <div class="bg-wrap fs-wrapper">
-                                        <div class="bg"  data-bg="{{car.image.url}}"></div>
+                                        <div class="bg"  data-bg="{{car.get_image}}"></div>
                                         <div class="overlay"></div>
                                     </div>
                                     <div class="city-carousel-content">

@@ -112,6 +112,11 @@ class Car(models.Model):
     def car_images(self):
         return CarImage.objects.filter(car=self)
     
+    def get_image(self):
+        if self.image:
+            return self.image.url
+        return ''
+    
     def number_of_images(self):
         return self.car_images().count()
 

@@ -30,7 +30,7 @@
                                 {% endif %}
                             </div>
                             <div class="hero-section-opt">
-                                <div class="property-single-header-price" data-propertyprise="50500"><strong>Price:</strong> <span class="pshp_item"><span>$</span> {{car.price_per_day|intcomma}}/ per day </span></div>
+                                <div class="property-single-header-price" data-propertyprise="50500"><strong>Price:</strong> <span class="pshp_item"><span>AED</span> {{car.price_per_day|intcomma}}/ per day </span></div>
                  
                                 <div class="property-single-header-date"><span>Status:</span>
                                     {% if car.is_available %}
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="bg-wrap bg-hero bg-parallax-wrap-gradien fs-wrapper" data-scrollax-parent="true">
-                    <div class="bg" data-bg="{{car.image.url}}" data-scrollax="properties: { translateY: '30%' }"></div>
+                    <div class="bg" data-bg="{{car.get_image}}" data-scrollax="properties: { translateY: '30%' }"></div>
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@
                                             <div class="hero-section-title">
                                                 <h2>{{car.name}}</h2>
                                                 <h4><i class="fa-solid fa-barcode"></i> <span>{{ car.horsepower }} HP | {{ car.transmission|title }} Transmission | {{ car.fuel_type|title }} Engine</span></h4>
-                                                <div class="property-single-header-price"><strong>Price:</strong> <span class="pshp_item"><span>$</span>{{car.price_per_day|intcomma}}/ per day</span></div>
+                                                <div class="property-single-header-price"><strong>Price:</strong> <span class="pshp_item"><span>AED</span>{{car.price_per_day|intcomma}}/ per day</span></div>
                                             </div>
                                             <div class="hero-section-opt">
                                                 <div class="listing-rating-count-wrap tolt" data-microtip-position="right" data-tooltip="Exelent">
@@ -241,7 +241,7 @@
                                 {% if car.video_link %}
                                     <div class="banner-widget-wrap" id="sec4">
                                         <div class="bg-wrap bg-parallax-wrap-gradien fs-wrapper">
-                                            <div class="bg" data-bg="{{car.image.url}}"></div>
+                                            <div class="bg" data-bg="{{car.get_image}}"></div>
                                         </div>
                                         <div class="banner-widget_content">
                                             <div class="video-box-btn" id="html5-videos" data-html="#video1"><i class="fas fa-play"></i></div>
@@ -302,7 +302,7 @@
                                                 <div class="geodir-category-listing">
                                                     <div class="geodir-category-img">
                                                         <a href="{{car.get_absolute_url}}" class="geodir-category-img_item">
-                                                            <div class="bg" data-bg="{{car.image.url}}"></div>
+                                                            <div class="bg" data-bg="{{car.get_image}}"></div>
                                                             <div class="overlay"></div>
                                                         </a>
                                                         <ul class="list-single-opt_header_cat">
@@ -325,7 +325,7 @@
                                                     </div>
                                                     <div class="geodir-category-content">
                                                         <h3><a href="{{car.get_absolute_url}}">{{car.name}}</a></h3>
-                                                        <div class="geodir-category-content_price">$ {{car.price_per_day|intcomma}}/ per day</div>
+                                                        <div class="geodir-category-content_price">AED {{car.price_per_day|intcomma}}/ per day</div>
                                                         <p> {{car.list_description}}</p>
                                                         <div class="geodir-category-content-details">
                                                             <ul>
