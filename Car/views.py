@@ -32,10 +32,6 @@ def fleet(request):
 
         cars = Car.objects.all()
 
-        for car in cars:
-            print(car.fuel_type)
-            print(car.body_type)
-        
         if fuel_type:
             cars = cars.filter(fuel_type=fuel_type)
 
@@ -83,7 +79,7 @@ def fleet(request):
         }
         return render(request, 'car/fleet.html', context)
             
-    cars = Car.objects.all()
+    cars = Car.objects.all().order_by('-created_at') 
 
     context = {
         'cars': cars,

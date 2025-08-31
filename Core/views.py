@@ -5,7 +5,7 @@ from django.conf import settings
 
 def home(request):
     
-    cars = Car.objects.all().order_by('created_at') 
+    cars = Car.objects.all().order_by('-created_at') 
     testimonials = Testimonial.objects.all()
 
     context = {
